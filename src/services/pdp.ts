@@ -52,13 +52,19 @@ export class PdpService {
      * @returns CID of the uploaded data if successful, null otherwise
      */
     public async put(data: string): Promise<string | null> {
-        try {
-            // Convert string to buffer for SHA-256 calculation
-            const buffer = Buffer.from(data, 'utf-8');
-            const size = buffer.length;
-            const hash = crypto.createHash('sha256').update(buffer).digest('hex');
+        // Convert string to buffer for SHA-256 calculation
+        const buffer = Buffer.from(data, 'utf-8');
+        const size = buffer.length;
+        // const hash = crypto.createHash('sha256').update(buffer).digest('hex');
 
-            logger.info(`Initiating PDP upload for data of size ${size} bytes`);
+        const commP = calculate(buffer);
+        const hashBytes = commP.multihash.digest
+        const hash = toHex(hashBytes)
+        const cidString = commP.toString()
+
+
+        const uploadTask = async () => {
+            logger.info(`Initiating PDP upload for data of size ${size} bytes, hash: ${hash}, cid string ${cidString}`);
 
             // Step 1: Initiate upload
             const initiateResponse = await axios({
@@ -70,7 +76,8 @@ export class PdpService {
                 },
                 data: {
                     check: {
-                        name: 'sha2-256',
+                        // name: 'sha2-256',
+                        name: 'sha2-256-trunc254-padded',
                         hash: hash,
                         size: size
                     }
@@ -103,17 +110,20 @@ export class PdpService {
 
                 if (uploadResponse.status === 204) {
                     // Step 3: Get the piece CID after successful upload
-                    return this.getPieceCID(size, hash);
+                    return cidString
                 } else {
                     throw new Error(`Unexpected upload response status: ${uploadResponse.status}`);
                 }
             }
 
             throw new Error(`Unexpected initiate response status: ${initiateResponse.status}`);
-        } catch (error) {
-            logger.error('Error uploading data to PDP:', error);
-            return null;
         }
+
+        uploadTask().catch(error => {
+            logger.error('Error during PDP upload:', error);
+        });
+
+        return cidString
     }
 
     /**
@@ -166,7 +176,7 @@ export class PdpService {
         try {
             const response = await axios({
                 method: 'get',
-                url: `${this.url}/pdp/piece?size=${size}&name=sha2-256&hash=${hash}`,
+                url: `${this.url}/pdp/piece?size=${size}&name=sha2-256-trunc254-padded&hash=${hash}`,
                 headers: {
                     'Authorization': `Bearer ${this.token}`
                 }
