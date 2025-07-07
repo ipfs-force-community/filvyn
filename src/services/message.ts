@@ -1,10 +1,10 @@
-import { BotContext } from "../types/bot";
-import { Note, NoteMetaWithCid, Tool, NoteMeta } from "../types";
-import { AgentService } from "./agent";
-import { StoreService } from "./store";
-import { UserId } from "../types/index";
-import { Logger } from "./tools";
-import { ChatMessage } from "../types/model";
+import { BotContext } from "../types/bot.js";
+import { Note, NoteMetaWithCid, Tool, NoteMeta } from "../types/index.js";
+import { AgentService } from "./agent.js";
+import { StoreService } from "./store.js";
+import { UserId } from "../types/index.js";
+import { Logger } from "./tools.js";
+import { ChatMessage } from "../types/model.js";
 
 var logger = new Logger('MessageService');
 
@@ -71,7 +71,7 @@ export class MessageService {
                         createdAt: new Date().toISOString(),
                     };
                     const cid = await this.storeService.addNote(userId, note) || "";
-                    const metadata : NoteMetaWithCid = {
+                    const metadata: NoteMetaWithCid = {
                         cid,
                         title: note.title,
                         tags: note.tags,
@@ -160,7 +160,7 @@ export class MessageService {
                     const { cid } = params;
                     const note = await this.storeService.getNote(userId, cid);
                     if (!note) return "Note not found";
-                    
+
                     const message = `Title: ${note.title}\nTags: ${note.tags}\nDate: ${note.createdAt}\nContent:\n\n ${note.content}`;
                     const meta = {
                         cid,
@@ -189,7 +189,7 @@ export class MessageService {
                     return "User reassured with message and typing indicator";
                 }
             }
-            
+
 
         ];
     }
@@ -217,7 +217,7 @@ export class MessageService {
         try {
             // todo: this action only consist for 5s, retrigger it on other actions
             ctx.sendAction('typing');
-            const agent = new AgentService(this.createUserTools(userId, ctx),  ctx.sendAction);
+            const agent = new AgentService(this.createUserTools(userId, ctx), ctx.sendAction);
 
             // initialize conversation history
             if (!this.conversationHistory[userId]) {

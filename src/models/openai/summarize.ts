@@ -1,10 +1,10 @@
 import OpenAI from 'openai';
-import { BaseSummarizeModel } from '../base/summarize';
-import { ModelConfig, ChatMessage } from '../../types/model';
+import { BaseSummarizeModel } from '../base/summarize.js';
+import { ModelConfig, ChatMessage } from '../../types/model.js';
 
 export class OpenAISummarizeModel extends BaseSummarizeModel {
     private client: OpenAI;
-    
+
     constructor(config: ModelConfig) {
         super(config);
         this.client = new OpenAI({
@@ -12,7 +12,7 @@ export class OpenAISummarizeModel extends BaseSummarizeModel {
             baseURL: config.baseUrl,
         });
     }
-    
+
     async summarize(messages: ChatMessage[]): Promise<string> {
         const openaiMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [
             {
@@ -30,7 +30,7 @@ export class OpenAISummarizeModel extends BaseSummarizeModel {
                 messages: openaiMessages,
                 model: this.config.model || 'gpt-4',
             });
-            
+
             const responseMessage = chatCompletion.choices[0]?.message.content;
 
             if (responseMessage) {

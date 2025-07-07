@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeAll } from '@jest/globals';
-import { ChatMessage } from '../types/model';
-import { AgentService, parseToolCalls } from '../services/agent';
-import { Tool } from '../types';
+import { ChatMessage } from '../types/model.js';
+import { AgentService, parseToolCalls } from '../services/agent.js';
+import { Tool } from '../types/index.js';
 
 interface NoteMeta {
     cid: string;

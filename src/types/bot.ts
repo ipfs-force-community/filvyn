@@ -1,4 +1,4 @@
-import { UserId } from "./index";
+import { UserId } from "./index.js";
 
 export interface BotUser {
     id: UserId;

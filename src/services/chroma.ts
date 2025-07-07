@@ -1,6 +1,6 @@
 import { ChromaClient, Collection } from 'chromadb';
-import { chromaConfig } from '../config';
-import { UserId } from "../types/index";
+import { chromaConfig } from '../config/index.js';
+import { UserId } from "../types/index.js";
 
 /**
  * Service for managing vector embeddings in Chroma database

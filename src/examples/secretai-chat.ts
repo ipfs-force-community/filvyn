@@ -1,5 +1,5 @@
-import { SecretAIChatModel } from '../models/secretai/chat';
-import { ChatMessage } from '../types/model';
+import { SecretAIChatModel } from '../models/secretai/chat.js';
+import { ChatMessage } from '../types/model.js';
 import dotenv from 'dotenv';
 
 // Load environment variables
@@ -27,9 +27,9 @@ async function main() {
     try {
         console.log('Sending chat request to SecretAI...');
         console.log('Messages:', JSON.stringify(messages, null, 2));
-        
+
         const response = await model.chat(messages);
-        
+
         console.log('\nResponse from SecretAI:');
         console.log(response);
     } catch (error) {

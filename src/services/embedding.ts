@@ -1,5 +1,5 @@
-import { ModelType, ModelConfig } from '../types/model';
-import { ModelFactory } from '../models/factory';
+import { ModelType, ModelConfig } from '../types/model.js';
+import { ModelFactory } from '../models/factory.js';
 
 export class EmbeddingService {
     private static instance: EmbeddingService;

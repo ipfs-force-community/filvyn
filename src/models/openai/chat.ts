@@ -1,10 +1,10 @@
 import OpenAI from 'openai';
-import { BaseChatModel } from '../base/chat';
-import { ChatMessage, ModelConfig } from '../../types/model';
+import { BaseChatModel } from '../base/chat.js';
+import { ChatMessage, ModelConfig } from '../../types/model.js';
 
 export class OpenAIChatModel extends BaseChatModel {
     private client: OpenAI;
-    
+
     constructor(config: ModelConfig) {
         super(config);
         this.client = new OpenAI({
@@ -12,7 +12,7 @@ export class OpenAIChatModel extends BaseChatModel {
             baseURL: config.baseUrl,
         });
     }
-    
+
     async chat(messages: ChatMessage[]): Promise<string> {
         const params: OpenAI.Chat.ChatCompletionCreateParams = {
             messages: messages,

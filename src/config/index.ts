@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import { BotConfig, PdpConfig as PdpConfig, ChromaConfig } from '../types/index';
-import { ModelConfig, ModelType, ModuleConfig } from '../types/model';
+import { BotConfig, PdpConfig as PdpConfig, ChromaConfig } from '../types/index.js';
+import { ModelConfig, ModelType, ModuleConfig } from '../types/model.js';
 
 // Load environment variables
 dotenv.config();

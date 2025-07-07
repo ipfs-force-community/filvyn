@@ -1,5 +1,5 @@
-import { ModelType, ModelConfig, ChatMessage } from '../types/model';
-import { ModelFactory } from '../models/factory';
+import { ModelType, ModelConfig, ChatMessage } from '../types/model.js';
+import { ModelFactory } from '../models/factory.js';
 
 export class SummarizeService {
     private static instance: SummarizeService;

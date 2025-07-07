@@ -1,5 +1,12 @@
-import { PdpService } from '../services/pdp';
+import { PdpService } from '../services/pdp.js';
 import dotenv from 'dotenv';
+import { calculate } from '@filoz/synapse-sdk/commp'
+import { toHex } from 'multiformats/bytes'
+
+const data = `Hello, this is a test data for PDP service!`;
+const buffer = Buffer.from(data, 'utf-8');
+const size = buffer.length;
+// const hash = crypto.createHash('sha256').update(buffer).digest('hex');
 
 // Load environment variables
 dotenv.config();

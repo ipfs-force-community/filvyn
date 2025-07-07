@@ -1,12 +1,12 @@
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
-import { Store, Cache, Note, NoteMeta, NoteMetaWithCid, UserId } from '../types/index';
-import { PdpService } from './pdp';
-import { ChromaService } from './chroma';
+import { Store, Cache, Note, NoteMeta, NoteMetaWithCid, UserId } from '../types/index.js';
+import { PdpService } from './pdp.js';
+import { ChromaService } from './chroma.js';
 import path from 'path';
 import fs from 'fs';
-import { EmbeddingService } from './embedding';
-import { modelConfig } from '../config';
+import { EmbeddingService } from './embedding.js';
+import { modelConfig } from '../config/index.js';
 
 // Data interface for lowdb
 type Data = {

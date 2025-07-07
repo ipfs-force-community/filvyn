@@ -1,7 +1,7 @@
 import { Client, Events, GatewayIntentBits, Message, Partials } from 'discord.js';
-import { BotContext } from '../types/bot';
-import { MessageService } from '../services/message';
-import { Logger } from '../services/tools';
+import { BotContext } from '../types/bot.js';
+import { MessageService } from '../services/message.js';
+import { Logger } from '../services/tools.js';
 
 var logger = new Logger('DiscordBot');
 

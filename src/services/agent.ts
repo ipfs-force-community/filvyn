@@ -1,8 +1,8 @@
-import { ChatMessage } from '../types/model';
-import { modelConfig } from '../config';
-import { ChatService } from './chat';
-import { Tool, TASK_COMPLETE_SIGNAL } from '../types';
-import { Logger } from './tools';
+import { ChatMessage } from '../types/model.js';
+import { modelConfig } from '../config/index.js';
+import { ChatService } from './chat.js';
+import { Tool, TASK_COMPLETE_SIGNAL } from '../types/index.js';
+import { Logger } from './tools.js';
 import { XMLParser } from 'fast-xml-parser';
 
 var logger = new Logger('AgentService');

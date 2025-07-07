@@ -1,5 +1,5 @@
-import { ChatMessage, ModelType, ModelConfig } from '../types/model';
-import { ModelFactory } from '../models/factory';
+import { ChatMessage, ModelType, ModelConfig } from '../types/model.js';
+import { ModelFactory } from '../models/factory.js';
 
 export class ChatService {
     private static instance: ChatService;
@@ -27,12 +27,12 @@ function unescape(str: string): string {
     return str.replace(/\\([n"!])/g, (match, p1) => {
 
         // Map of special escape sequences
-        const escapeMap : {[key: string]: string} = {
+        const escapeMap: { [key: string]: string } = {
             'n': '\n',  // Convert \n to actual newline
             '"': '"',   // Convert \" to "
             '!': '!'    // Convert \! to !
         };
-        
+
         return escapeMap[p1] || p1;
     });
 }

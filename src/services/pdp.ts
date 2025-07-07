@@ -1,7 +1,9 @@
 import axios from 'axios';
 import * as crypto from 'crypto';
-import { pdpConfig } from '../config';
-import { Logger } from './tools';
+import { pdpConfig } from '../config/index.js';
+import { Logger } from './tools.js';
+import { calculate } from '@filoz/synapse-sdk/commp'
+import { toHex } from 'multiformats/bytes'
 
 const logger = new Logger('PDPService');
 

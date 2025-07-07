@@ -1,8 +1,8 @@
-import { ModelType, ModelConfig, ChatModel, SummarizeModel, EmbeddingModel } from '../types/model';
-import { OpenAIChatModel } from './openai/chat';
-import { OpenAISummarizeModel } from './openai/summarize';
-import { OpenAIEmbeddingModel } from './openai/embedding';
-import { SecretAIChatModel } from './secretai/chat';
+import { ModelType, ModelConfig, ChatModel, SummarizeModel, EmbeddingModel } from '../types/model.js';
+import { OpenAIChatModel } from './openai/chat.js';
+import { OpenAISummarizeModel } from './openai/summarize.js';
+import { OpenAIEmbeddingModel } from './openai/embedding.js';
+import { SecretAIChatModel } from './secretai/chat.js';
 
 export class ModelFactory {
     static createChatModel(type: ModelType, config: ModelConfig): ChatModel {

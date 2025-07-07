@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { ChatMessage } from "./model";
+import { ChatMessage } from "./model.js";
 
 export interface NoteCache {
     note: Note;

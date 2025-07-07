@@ -1,6 +1,6 @@
-import { botConfig } from './config/index';
-import { TelegramBot } from './bots/telegram';
-import { DiscordBot } from './bots/discord';
+import { botConfig } from './config/index.js';
+import { TelegramBot } from './bots/telegram.js';
+import { DiscordBot } from './bots/discord.js';
 
 const stopFns: Array<() => Promise<void>> = [];
 

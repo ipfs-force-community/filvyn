@@ -1,8 +1,8 @@
 import { Telegraf, Context } from 'telegraf';
 import { message } from 'telegraf/filters';
 import { Message } from 'telegraf/types';
-import { BotContext } from '../types/bot';
-import { MessageService } from '../services/message';
+import { BotContext } from '../types/bot.js';
+import { MessageService } from '../services/message.js';
 
 export class TelegramBot {
     private bot: Telegraf;
@@ -49,21 +49,21 @@ export class TelegramBot {
             },
             sendAction: async (action: string) => {
                 // Telegraf 只接受特定的动作类型
-                type TelegramAction = "typing" | "upload_photo" | "record_video" | "upload_video" | 
-                    "record_voice" | "upload_voice" | "upload_document" | "choose_sticker" | 
+                type TelegramAction = "typing" | "upload_photo" | "record_video" | "upload_video" |
+                    "record_voice" | "upload_voice" | "upload_document" | "choose_sticker" |
                     "find_location" | "record_video_note" | "upload_video_note";
-                
+
                 // 检查动作是否是有效的 Telegram 动作
-                if (action === "typing" || 
-                    action === "upload_photo" || 
-                    action === "record_video" || 
-                    action === "upload_video" || 
-                    action === "record_voice" || 
-                    action === "upload_voice" || 
-                    action === "upload_document" || 
-                    action === "choose_sticker" || 
-                    action === "find_location" || 
-                    action === "record_video_note" || 
+                if (action === "typing" ||
+                    action === "upload_photo" ||
+                    action === "record_video" ||
+                    action === "upload_video" ||
+                    action === "record_voice" ||
+                    action === "upload_voice" ||
+                    action === "upload_document" ||
+                    action === "choose_sticker" ||
+                    action === "find_location" ||
+                    action === "record_video_note" ||
                     action === "upload_video_note") {
                     await ctx.sendChatAction(action as TelegramAction);
                 }
